@@ -1,0 +1,25 @@
+# Archivos de Android Studio
+*.iml
+.idea/
+.gradle/
+
+# Archivos locales
+local.properties
+
+# Builds
+/build/
+/app/build/
+
+# Capturas
+captures/
+
+# NDK / C++
+.externalNativeBuild/
+.cxx/
+
+# Logs
+*.log
+
+# OS (Windows / Mac)
+.DS_Store
+Thumbs.db
