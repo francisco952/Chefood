@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/numberStep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:background="@drawable/ct_background"
+        android:backgroundTint="@color/bg_step"
+        android:padding="5dp"
+        android:text="1"
+        android:textSize="25sp"
+        android:textColor="@color/step"
+        android:gravity="center"
+        android:textStyle="bold"/>
+    <Space
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/titleStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola mundo"
+            android:textSize="15sp"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/textStep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem"
+            android:textSize="10sp"
+            android:gravity="start"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+</LinearLayout>

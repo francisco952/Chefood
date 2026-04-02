@@ -16,8 +16,10 @@
     <string name="bt_view">Vista</string>
     <string name="bt_close">Cerrar</string>
     <string name="lorem">Loremd dsjfsdf sdsdf a 34r wsdf af 2rwe asfsadf</string>
+    <string name="info">Descripción</string>
     <string name="ingredients">Ingredientes</string>
     <string name="steps">Preparación</string>
+    <string name="ic_ingredient">Icono de ingrediente</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

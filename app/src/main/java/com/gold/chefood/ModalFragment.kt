@@ -57,10 +57,28 @@ class ModalFragment : DialogFragment() {
             InfoItem("CARBO", "20g", R.color.carbo, R.color.bg_carbo),
             InfoItem("GRASAS", "5g", R.color.grass, R.color.bg_grass)
         )
-        recycler.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recycler.layoutManager = GridLayoutManager(requireContext(),4)
         recycler.adapter = InfoAdapter(list)
+        //create ingredients
+        val recyclerIngredients = view.findViewById<RecyclerView>(R.id.contentIngredients)
+        val listIngredients = listOf(
+            IngredientItem("Arroz"),
+            IngredientItem("Pollo"),
+            IngredientItem("Sal"),
+            IngredientItem("Aceite")
+        )
+        recyclerIngredients.layoutManager = LinearLayoutManager(requireContext())
+        recyclerIngredients.adapter = IngredientsAdapter(listIngredients)
+        recyclerIngredients.isNestedScrollingEnabled = false
+        //create steps
+        val recyclerSteps = view.findViewById<RecyclerView>(R.id.contentSteps)
+        val listSteps = listOf(
+            StepItem("1","Prender estifa","Temperatura ambiente en 85°C"),
+            StepItem("2","Cortar Pollo","Cortar pollo en porciones pequeñas")
+        )
+        recyclerSteps.layoutManager = LinearLayoutManager(requireContext())
+        recyclerSteps.adapter = StepAdapter(listSteps)
+        recyclerSteps.isNestedScrollingEnabled = false
     }
 
     companion object {
