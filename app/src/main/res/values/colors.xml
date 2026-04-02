@@ -3,4 +3,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#EA6A53</color>
+    <color name="trash">#AD0A23</color>
+    <color name="favorite">#3E9B0C</color>
+    <color name="view">#11B6C8</color>
+    <color name="green">#0D631B</color>
+    <color name="orange">#7B4B00</color>
+    <color name="calories">#035F25</color>
+    <color name="protein">#764701</color>
+    <color name="carbo">#962854</color>
+    <color name="grass">#333A37</color>
+    <color name="bg_calories">#D9FAE2</color>
+    <color name="bg_protein">#FAF3ED</color>
+    <color name="bg_carbo">#FAE6EB</color>
+    <color name="bg_grass">#E6E8EC</color>
 </resources>
