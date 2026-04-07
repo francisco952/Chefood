@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,6 +53,11 @@ class ModalFragment : DialogFragment() {
         val id = arguments?.getInt("idFood")
         val recipes = getRecipes(requireContext())
         val recipe = recipes.find { it.id == id }
+        //Img
+        val image = view.findViewById<ImageView>(R.id.imgModal)
+        Picasso.get()
+            .load(recipe?.image_url)
+            .into(image)
         //create title
         val title = view.findViewById<TextView>(R.id.headerModal)
         title.text = recipe?.name

@@ -4,14 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 
 class FoodAdapter (private val recipes: List<Recipe>, val onClick: (Int) -> Unit): RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.txtTitle)
         val calories = view.findViewById<TextView>(R.id.txtCalories)
         val description = view.findViewById<TextView>(R.id.txtDescription)
+        val image = view.findViewById<ImageView>(R.id.imgFood)
         val btn_view = view.findViewById<ImageButton>(R.id.viewFood)
     }
 
@@ -29,6 +32,10 @@ class FoodAdapter (private val recipes: List<Recipe>, val onClick: (Int) -> Unit
         holder.btn_view.setOnClickListener {
             onClick(recipe.id)
         }
+        Picasso.get()
+            .load(recipe.image_url)
+            .error(R.drawable.fondo_menu)
+            .into(holder.image)
     }
 
     override fun getItemCount() = recipes.size
