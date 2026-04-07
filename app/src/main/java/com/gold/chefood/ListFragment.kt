@@ -39,10 +39,12 @@ class ListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
         val recycler = view.findViewById<RecyclerView>(R.id.list_food)
         recycler.layoutManager = LinearLayoutManager(requireContext())
-        recycler.adapter = FoodAdapter{ position ->
+        val recipes = getRecipes(requireContext())
+
+        recycler.adapter = FoodAdapter(recipes){ id ->
             val modal = ModalFragment()
             val bundle = Bundle()
-            bundle.putInt("position",position)
+            bundle.putInt("idFood", id)
             modal.arguments = bundle
             modal.show(parentFragmentManager,"ModalFragment")
         }

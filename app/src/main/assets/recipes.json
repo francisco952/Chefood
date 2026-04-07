@@ -1,0 +1,345 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Pasta al pesto",
+      "favorite": true,
+      "type": ["Vegetariano", "saludable", "Rico en Carbohidratos", "orgánico"],
+      "image_url": "https://cdn.loveandlemons.com/wp-content/uploads/2025/07/basil-pesto-pasta-1160x1624.jpg",
+      "description": "Pasta italiana con salsa pesto.",
+      "calories": "420g",
+      "carbohydrates": "80g",
+      "protein": "15g",
+      "totalfat": "12g",
+      "ingredients": [
+        "200 g pasta",
+        "albahaca fresca",
+        "queso parmesano",
+        "aceite de oliva",
+        "nueces"
+      ],
+      "steps": [
+        { "step": "1", "value": "Hervir la pasta hasta que esté al dente y agregar sal." },
+        { "step": "2", "value": "Licuar albahaca, nueces, queso parmesano y aceite de oliva." },
+        { "step": "3", "value": "Mezclar la pasta con la salsa." },
+        { "step": "4", "value": "Servir caliente." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Ensalada de quinoa",
+      "favorite": false,
+      "type": ["Vegano", "saludable", "sin gluten"],
+      "image_url": "https://mandolina.co/wp-content/uploads/2024/08/ensalada-de-quinoa-con-aguacate.jpg",
+      "description": "Ensalada saludable con quinoa, tomate y aguacate.",
+      "calories": "320g",
+      "carbohydrates": "130g",
+      "protein": "28g",
+      "totalfat": "8g",
+      "ingredients": [
+        "1 taza quinoa",
+        "1 tomate",
+        "1 aguacate",
+        "espinaca",
+        "limón",
+        "aceite de oliva"
+      ],
+      "steps": [
+        { "step": "1", "value": "Hervir agua y agregar la quinoa." },
+        { "step": "2", "value": "Cocinar por 15 minutos." },
+        { "step": "3", "value": "Lavar y cortar los vegetales." },
+        { "step": "4", "value": "Mezclar todo y agregar limón y aceite." }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Batido verde",
+      "favorite": true,
+      "type": ["Vegano", "saludable", "sin azúcar"],
+      "image_url": "https://www.conasi.eu/blog/wp-content/uploads/2016/09/batido-verde-de-mango-1.jpg",
+      "description": "Batido verde saludable para desayuno.",
+      "calories": "320g",
+      "carbohydrates": "100g",
+      "protein": "30g",
+      "totalfat": "5g",
+      "ingredients": [
+        "1 banana",
+        "1 taza espinaca",
+        "1 vaso leche de almendras",
+        "1 mango",
+        "1 rama de apio",
+        "miel (opcional)"
+      ],
+      "steps": [
+        { "step": "1", "value": "Agregar todos los ingredientes a la licuadora." },
+        { "step": "2", "value": "Licuar por 60 segundos." },
+        { "step": "3", "value": "Servir frío y decorar." }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Tacos de pollo",
+      "favorite": false,
+      "type": ["Rico en proteina", "saludable"],
+      "image_url": "https://s3.amazonaws.com/static.realcaliforniamilk.com/media/recipes_2/chicken-street-tacos.jpg",
+      "description": "Tacos mexicanos con pollo.",
+      "calories": "450g",
+      "carbohydrates": "50g",
+      "protein": "35g",
+      "totalfat": "12g",
+      "ingredients": [
+        "200 g pollo",
+        "tortillas de maíz",
+        "cebolla",
+        "cilantro",
+        "limón",
+        "sal",
+        "pimienta"
+      ],
+      "steps": [
+        { "step": "1", "value": "Cocinar el pollo con especias." },
+        { "step": "2", "value": "Desmenuzar el pollo." },
+        { "step": "3", "value": "Calentar tortillas." },
+        { "step": "4", "value": "Armar tacos con ingredientes." }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pizza margarita",
+      "favorite": true,
+      "type": ["Vegetariano", "Rico en Carbohidratos"],
+      "image_url": "https://images.unsplash.com/photo-1601924582975-7e6e6c5b0b7c",
+      "description": "Pizza clásica italiana.",
+      "calories": "600g",
+      "carbohydrates": "90g",
+      "protein": "20g",
+      "totalfat": "18g",
+      "ingredients": [
+        "masa de pizza",
+        "salsa de tomate",
+        "queso mozzarella",
+        "albahaca",
+        "aceite de oliva",
+        "sal"
+      ],
+      "steps": [
+        { "step": "1", "value": "Precalentar horno a 220°C." },
+        { "step": "2", "value": "Extender la masa." },
+        { "step": "3", "value": "Agregar salsa y queso." },
+        { "step": "4", "value": "Hornear y servir." }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Salmón a la plancha",
+      "favorite": false,
+      "type": ["Rico en proteina", "saludable", "sin gluten"],
+      "image_url": "https://japanesecooking101.com/wp-content/uploads/2012/05/IMG_4100.jpg",
+      "description": "Salmón con vegetales.",
+      "calories": "500g",
+      "carbohydrates": "10g",
+      "protein": "40g",
+      "totalfat": "25g",
+      "ingredients": [
+        "filete de salmón",
+        "brócoli",
+        "zanahoria",
+        "aceite de oliva",
+        "limón",
+        "sal",
+        "pimienta"
+      ],
+      "steps": [
+        { "step": "1", "value": "Sazonar el salmón." },
+        { "step": "2", "value": "Cocinar 4 minutos por lado." },
+        { "step": "3", "value": "Preparar vegetales." },
+        { "step": "4", "value": "Servir con limón." }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Hamburguesa clásica",
+      "favorite": true,
+      "type": ["Rico en proteina", "Rico en Carbohidratos"],
+      "image_url": "https://www.tasteofhome.com/wp-content/uploads/2024/09/Cook-Burgers",
+      "description": "Hamburguesa con queso.",
+      "calories": "700g",
+      "carbohydrates": "60g",
+      "protein": "30g",
+      "totalfat": "35g",
+      "ingredients": [
+        "pan de hamburguesa",
+        "carne molida",
+        "queso",
+        "lechuga",
+        "tomate",
+        "cebolla",
+        "salsa"
+      ],
+      "steps": [
+        { "step": "1", "value": "Formar la carne." },
+        { "step": "2", "value": "Cocinar la carne." },
+        { "step": "3", "value": "Agregar queso." },
+        { "step": "4", "value": "Armar hamburguesa." }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Arroz frito",
+      "favorite": false,
+      "type": ["Rico en Carbohidratos"],
+      "image_url": "https://cjeatsrecipes.com/wp-content/uploads/2023/11/Egg-Fried-Rice",
+      "description": "Arroz estilo asiático.",
+      "calories": "480g",
+      "carbohydrates": "85g",
+      "protein": "12g",
+      "totalfat": "10g",
+      "ingredients": [
+        "arroz cocido",
+        "huevo",
+        "zanahoria",
+        "cebolla",
+        "salsa de soya",
+        "aceite"
+      ],
+      "steps": [
+        { "step": "1", "value": "Calentar aceite." },
+        { "step": "2", "value": "Cocinar vegetales." },
+        { "step": "3", "value": "Agregar arroz y soya." },
+        { "step": "4", "value": "Agregar huevo y mezclar." }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Panqueques",
+      "favorite": true,
+      "type": ["Rico en Carbohidratos", "Vegetariano"],
+      "image_url": "https://www.californiastrawberries.com/wp-content/uploads/2021/11/heart-pancakes.png",
+      "description": "Panqueques con miel y fresas.",
+      "calories": "520g",
+      "carbohydrates": "95g",
+      "protein": "10g",
+      "totalfat": "12g",
+      "ingredients": [
+        "harina",
+        "leche",
+        "huevo",
+        "azúcar",
+        "mantequilla",
+        "fresas",
+        "miel"
+      ],
+      "steps": [
+        { "step": "1", "value": "Mezclar ingredientes." },
+        { "step": "2", "value": "Calentar sartén." },
+        { "step": "3", "value": "Cocinar mezcla." },
+        { "step": "4", "value": "Servir con miel y fresas." }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Ensalada César",
+      "favorite": false,
+      "type": ["saludable", "Rico en proteina"],
+      "image_url": "https://assets.tmecosys.com/image/upload",
+      "description": "Ensalada César con pollo.",
+      "calories": "400g",
+      "carbohydrates": "20g",
+      "protein": "30g",
+      "totalfat": "18g",
+      "ingredients": [
+        "lechuga",
+        "pollo",
+        "crutones",
+        "queso parmesano",
+        "aderezo césar"
+      ],
+      "steps": [
+        { "step": "1", "value": "Cortar lechuga." },
+        { "step": "2", "value": "Agregar ingredientes." },
+        { "step": "3", "value": "Añadir aderezo." },
+        { "step": "4", "value": "Servir." }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Lasagna",
+      "favorite": true,
+      "type": ["Rico en Carbohidratos"],
+      "image_url": "https://www.tasteofhome.com/wp-content/uploads/2025/07/Best-Lasagna",
+      "description": "Lasagna italiana.",
+      "calories": "650g",
+      "carbohydrates": "70g",
+      "protein": "35g",
+      "totalfat": "25g",
+      "ingredients": [
+        "láminas de pasta",
+        "carne molida",
+        "salsa de tomate",
+        "queso",
+        "cebolla",
+        "ajo"
+      ],
+      "steps": [
+        { "step": "1", "value": "Cocinar carne." },
+        { "step": "2", "value": "Agregar salsa." },
+        { "step": "3", "value": "Armar capas." },
+        { "step": "4", "value": "Hornear y servir." }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Sopa de tomate",
+      "favorite": false,
+      "type": ["saludable", "Vegetariano"],
+      "image_url": "https://www.justspices.es/media/opti_image",
+      "description": "Sopa cremosa.",
+      "calories": "250g",
+      "carbohydrates": "30g",
+      "protein": "6g",
+      "totalfat": "8g",
+      "ingredients": [
+        "tomates",
+        "cebolla",
+        "ajo",
+        "caldo",
+        "crema",
+        "sal",
+        "pimienta"
+      ],
+      "steps": [
+        { "step": "1", "value": "Cocinar vegetales." },
+        { "step": "2", "value": "Agregar caldo." },
+        { "step": "3", "value": "Licuar mezcla." },
+        { "step": "4", "value": "Agregar crema y servir." }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Pollo al horno",
+      "favorite": true,
+      "type": ["Rico en proteina", "saludable"],
+      "image_url": "https://images.cookforyourlife.org/wp-content/uploads/2018/08",
+      "description": "Pollo horneado.",
+      "calories": "550g",
+      "carbohydrates": "20g",
+      "protein": "45g",
+      "totalfat": "20g",
+      "ingredients": [
+        "pollo",
+        "papas",
+        "ajo",
+        "aceite de oliva",
+        "sal",
+        "pimienta",
+        "hierbas"
+      ],
+      "steps": [
+        { "step": "1", "value": "Precalentar horno." },
+        { "step": "2", "value": "Sazonar pollo." },
+        { "step": "3", "value": "Agregar papas." },
+        { "step": "4", "value": "Hornear y servir." }
+      ]
+    }
+  ]
+}

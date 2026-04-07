@@ -7,12 +7,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FoodAdapter (val onClick: (Int) -> Unit): RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
+class FoodAdapter (private val recipes: List<Recipe>, val onClick: (Int) -> Unit): RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title = view.findViewById<TextView>(R.id.txtTitle)
         val calories = view.findViewById<TextView>(R.id.txtCalories)
         val description = view.findViewById<TextView>(R.id.txtDescription)
-        val btn_view = itemView.findViewById<ImageButton>(R.id.viewFood)
+        val btn_view = view.findViewById<ImageButton>(R.id.viewFood)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,39 +22,14 @@ class FoodAdapter (val onClick: (Int) -> Unit): RecyclerView.Adapter<FoodAdapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val recipe = recipes[position]
+        holder.title.text = recipe.name
+        holder.calories.text = recipe.calories
+        holder.description.text = recipe.description
         holder.btn_view.setOnClickListener {
-            onClick(position)
-        }
-        when(position) {
-            0 -> {
-                holder.title.text = "Hamburguesa"
-                holder.calories.text = "500 CAL"
-                holder.description.text = "Deliciosa hamburguesa"
-            }
-            1 -> {
-                holder.title.text = "Pizza"
-                holder.calories.text = "700 CAL"
-                holder.description.text = "Pizza con queso"
-            }
-            2 -> {
-                holder.title.text = "Ensalada"
-                holder.calories.text = "200 CAL"
-                holder.description.text = "Saludable"
-            }
-            3 -> {
-                holder.title.text = "Pasta"
-                holder.calories.text = "450 CAL"
-                holder.description.text = "Con salsa"
-            }
-            4 -> {
-                holder.title.text = "Sushi"
-                holder.calories.text = "300 CAL"
-                holder.description.text = "Fresco"
-            }
+            onClick(recipe.id)
         }
     }
 
-    override fun getItemCount() = 5
-
-
+    override fun getItemCount() = recipes.size
 }
