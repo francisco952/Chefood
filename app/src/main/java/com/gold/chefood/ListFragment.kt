@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.adapters.FoodAdapter
+import com.gold.chefood.modal.AddFoodFragment
+import com.gold.chefood.modal.ModalFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -48,12 +51,12 @@ class ListFragment : Fragment() {
         val recycler = view.findViewById<RecyclerView>(R.id.list_food)
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = FoodAdapter(recipeList){ id ->
+        adapter = FoodAdapter(recipeList) { id ->
             val modal = ModalFragment()
             val bundle = Bundle()
-            bundle.putInt("idFood", id)
+            bundle.putSerializable("recipe", recipeList.find { it.id == id })
             modal.arguments = bundle
-            modal.show(parentFragmentManager,"ModalFragment")
+            modal.show(parentFragmentManager, "ModalFragment")
         }
 
         recycler.adapter = adapter

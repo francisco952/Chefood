@@ -1,4 +1,4 @@
-package com.gold.chefood
+package com.gold.chefood.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.R
+import com.gold.chefood.Recipe
 import com.squareup.picasso.Picasso
 
 class FoodAdapter (private val recipes: List<Recipe>, val onClick: (Int) -> Unit): RecyclerView.Adapter<FoodAdapter.ViewHolder>() {

@@ -1,6 +1,7 @@
-package com.gold.chefood
+package com.gold.chefood.modal
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.R
+import com.gold.chefood.Recipe
+import com.gold.chefood.adapters.InfoAdapter
+import com.gold.chefood.adapters.InfoItem
+import com.gold.chefood.adapters.IngredientItem
+import com.gold.chefood.adapters.IngredientsAdapter
+import com.gold.chefood.adapters.StepAdapter
+import com.gold.chefood.adapters.StepItem
+import com.gold.chefood.getRecipes
+import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,51 +73,44 @@ class ModalFragment : DialogFragment() {
             dismiss()
         }
         //
-        val id = arguments?.getInt("idFood") ?: return
-        lifecycleScope.launch{
-            val recipes = withContext(Dispatchers.IO) {
-                getRecipes(requireContext())
-            }
-
-            val recipe = recipes.find { it.id == id } ?: return@launch
-//Img
-            val image = view.findViewById<ImageView>(R.id.imgModal)
-            Picasso.get()
-                .load(recipe?.image_url)
-                .into(image)
-            //create title
-            val title = view.findViewById<TextView>(R.id.headerModal)
-            title.text = recipe?.name
-            //create description
-            val description = view.findViewById<TextView>(R.id.txt_description)
-            description.text = recipe?.description
-            //create info
-            val recycler = view.findViewById<RecyclerView>(R.id.contentInfo)
-            val list = listOf(
-                InfoItem("CALORIAS", "${recipe?.calories}", R.color.calories, R.color.bg_calories),
-                InfoItem("PROTEINA", "${recipe?.protein}", R.color.protein, R.color.bg_protein),
-                InfoItem("CARBO", "${recipe?.carbohydrates}", R.color.carbo, R.color.bg_carbo),
-                InfoItem("GRASAS", "${recipe?.totalfat}", R.color.grass, R.color.bg_grass)
-            )
-            recycler.layoutManager = GridLayoutManager(requireContext(),4)
-            recycler.adapter = InfoAdapter(list)
-            //create ingredients
-            val recyclerIngredients = view.findViewById<RecyclerView>(R.id.contentIngredients)
-            val listIngredients = recipe?.ingredients?.map {
-                IngredientItem(it)
-            } ?: emptyList()
-            recyclerIngredients.layoutManager = LinearLayoutManager(requireContext())
-            recyclerIngredients.adapter = IngredientsAdapter(listIngredients)
-            recyclerIngredients.isNestedScrollingEnabled = false
-            //create steps
-            val recyclerSteps = view.findViewById<RecyclerView>(R.id.contentSteps)
-            val listSteps = recipe?.steps?.map {
-                StepItem(it.step, it.value, "")
-            } ?: emptyList()
-            recyclerSteps.layoutManager = LinearLayoutManager(requireContext())
-            recyclerSteps.adapter = StepAdapter(listSteps)
-            recyclerSteps.isNestedScrollingEnabled = false
-        }
+        val recipe = arguments?.getSerializable("recipe") as? Recipe ?: return
+        //Img
+        val image = view.findViewById<ImageView>(R.id.imgModal)
+        Picasso.get()
+            .load(recipe?.image_url)
+            .into(image)
+        //create title
+        val title = view.findViewById<TextView>(R.id.headerModal)
+        title.text = recipe?.name
+        //create description
+        val description = view.findViewById<TextView>(R.id.txt_description)
+        description.text = recipe?.description
+        //create info
+        val recycler = view.findViewById<RecyclerView>(R.id.contentInfo)
+        val list = listOf(
+            InfoItem("CALORIAS", "${recipe?.calories}", R.color.calories, R.color.bg_calories),
+            InfoItem("PROTEINA", "${recipe?.protein}", R.color.protein, R.color.bg_protein),
+            InfoItem("CARBO", "${recipe?.carbohydrates}", R.color.carbo, R.color.bg_carbo),
+            InfoItem("GRASAS", "${recipe?.totalfat}", R.color.grass, R.color.bg_grass)
+        )
+        recycler.layoutManager = GridLayoutManager(requireContext(),4)
+        recycler.adapter = InfoAdapter(list)
+        //create ingredients
+        val recyclerIngredients = view.findViewById<RecyclerView>(R.id.contentIngredients)
+        val listIngredients = recipe?.ingredients?.map {
+            IngredientItem(it)
+        } ?: emptyList()
+        recyclerIngredients.layoutManager = LinearLayoutManager(requireContext())
+        recyclerIngredients.adapter = IngredientsAdapter(listIngredients)
+        recyclerIngredients.isNestedScrollingEnabled = false
+        //create steps
+        val recyclerSteps = view.findViewById<RecyclerView>(R.id.contentSteps)
+        val listSteps = recipe?.steps?.map {
+            StepItem(it.step, it.value, "")
+        } ?: emptyList()
+        recyclerSteps.layoutManager = LinearLayoutManager(requireContext())
+        recyclerSteps.adapter = StepAdapter(listSteps)
+        recyclerSteps.isNestedScrollingEnabled = false
 
     }
 

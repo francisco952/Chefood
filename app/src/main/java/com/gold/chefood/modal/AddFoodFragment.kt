@@ -1,5 +1,6 @@
-package com.gold.chefood
+package com.gold.chefood.modal
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,12 +12,16 @@ import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.Recipe
+import com.gold.chefood.RecipeResponse
+import com.gold.chefood.Step
 import com.gold.chefood.adapters.AddIngredientAdapter
 import com.gold.chefood.adapters.AddStepAdapter
 import com.gold.chefood.adapters.Ingredient
 import com.gold.chefood.adapters.RecipeStep
 import com.gold.chefood.adapters.RecipeTag
 import com.gold.chefood.adapters.TagAdapter
+import com.gold.chefood.getRecipes
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -57,7 +62,7 @@ class AddFoodFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL,android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+        setStyle(STYLE_NORMAL, R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
     }
 
     override fun onCreateView(
@@ -65,24 +70,24 @@ class AddFoodFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_add_food, container, false)
+        return inflater.inflate(com.gold.chefood.R.layout.fragment_add_food, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //close
-        val btn_close = view.findViewById<ImageView>(R.id.closeAddModal)
+        val btn_close = view.findViewById<ImageView>(com.gold.chefood.R.id.closeAddModal)
         btn_close.setOnClickListener {
             dismiss()
         }
         //ingredients
-        val recyclerIngredients = view.findViewById<RecyclerView>(R.id.recycleaddIngredient)
-        val btnAddIngredients = view.findViewById<MaterialButton>(R.id.addIngredient)
+        val recyclerIngredients = view.findViewById<RecyclerView>(com.gold.chefood.R.id.recycleaddIngredient)
+        val btnAddIngredients = view.findViewById<MaterialButton>(com.gold.chefood.R.id.addIngredient)
         //step
-        val recyclerSteps = view.findViewById<RecyclerView>(R.id.recycleaddStep)
-        val btnAddStep = view.findViewById<MaterialButton>(R.id.addStep)
+        val recyclerSteps = view.findViewById<RecyclerView>(com.gold.chefood.R.id.recycleaddStep)
+        val btnAddStep = view.findViewById<MaterialButton>(com.gold.chefood.R.id.addStep)
         //tag
-        val recyclerTags = view.findViewById<RecyclerView>(R.id.recycleAddTag)
+        val recyclerTags = view.findViewById<RecyclerView>(com.gold.chefood.R.id.recycleAddTag)
         val tagAdapter = TagAdapter(tagList)
         recyclerTags.adapter = tagAdapter
 
@@ -129,13 +134,13 @@ class AddFoodFragment : DialogFragment() {
         //form add food
         val dataFood = getRecipes(requireContext())
         val idFood = (dataFood.maxOfOrNull { it.id } ?: 0) + 1
-        val etTitle = view.findViewById<TextInputEditText>(R.id.etTitle)
-        val etDescription = view.findViewById<TextInputEditText>(R.id.etDescription)
-        val etCalorie = view.findViewById<TextInputEditText>(R.id.etCalories)
-        val etProtein = view.findViewById<TextInputEditText>(R.id.etProtein)
-        val etCarbo = view.findViewById<TextInputEditText>(R.id.etCarbo)
-        val etTotalgrass = view.findViewById<TextInputEditText>(R.id.etGrass)
-        val btnSave = view.findViewById<Button>(R.id.newFood)
+        val etTitle = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etTitle)
+        val etDescription = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etDescription)
+        val etCalorie = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etCalories)
+        val etProtein = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etProtein)
+        val etCarbo = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etCarbo)
+        val etTotalgrass = view.findViewById<TextInputEditText>(com.gold.chefood.R.id.etGrass)
+        val btnSave = view.findViewById<Button>(com.gold.chefood.R.id.newFood)
         btnSave.setOnClickListener {
             try{
                 val selectedTypes = tagList
@@ -180,7 +185,7 @@ class AddFoodFragment : DialogFragment() {
             }
         }
     }
-    fun saveFood(newFood:Recipe){
+    fun saveFood(newFood: Recipe){
         val file = File(requireContext().filesDir, "recipe.json")
         val gson = Gson()
         val recipeList: MutableList<Recipe>

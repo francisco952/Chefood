@@ -1,4 +1,4 @@
-package com.gold.chefood
+package com.gold.chefood.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.R
 
 data class InfoItem(
     val title: String,
