@@ -18,4 +18,6 @@
     <color name="bg_carbo">#FAE6EB</color>
     <color name="bg_grass">#E6E8EC</color>
     <color name="bg_step">#C7DDD0</color>
+    <color name="bg_tag">#E3EBDC</color>
+    <color name="bg_select_tag">#E98B1C</color>
 </resources>

@@ -10,6 +10,15 @@
         android:id="@+id/list_food"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFood"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_bt_add"
+        app:tint="@color/favorite"
+        android:backgroundTint="@color/white"
+        android:contentDescription="@string/bt_add"/>
 
 </FrameLayout>
