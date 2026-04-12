@@ -34,6 +34,8 @@ class FoodAdapter (private val recipes: List<Recipe>, val onClick: (Int) -> Unit
         }
         Picasso.get()
             .load(recipe.image_url)
+            .fit()
+            .centerCrop()
             .error(R.drawable.fondo_menu)
             .into(holder.image)
     }

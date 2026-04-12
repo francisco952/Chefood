@@ -59,9 +59,10 @@ class ListFragment : Fragment() {
         recycler.adapter = adapter
 
         lifecycleScope.launch {
+            val ctx = context ?: return@launch
             val recipes = withContext(Dispatchers.IO) {
                 try {
-                    getRecipes(requireContext())
+                    getRecipes(ctx)
                 } catch (e: Exception) {
                     e.printStackTrace()
                     emptyList()
@@ -69,13 +70,15 @@ class ListFragment : Fragment() {
             }
             recipeList.clear()
             recipeList.addAll(recipes)
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemRangeInserted(0, recipes.size)
         }
 
         parentFragmentManager.setFragmentResultListener("recipe",viewLifecycleOwner){_, bundle ->
-            val json = bundle.getString("recipe")
-            if (json != null) {
-                val newRecipe = Gson().fromJson(json, Recipe::class.java)
+            val json = bundle.getString("recipe")?: return@setFragmentResultListener
+            lifecycleScope.launch {
+                val newRecipe = withContext(Dispatchers.Default) {
+                    Gson().fromJson(json, Recipe::class.java)
+                }
 
                 recipeList.add(newRecipe)
                 adapter.notifyItemInserted(recipeList.size - 1)
