@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,13 +53,18 @@ class ListFragment : Fragment() {
         val recycler = view.findViewById<RecyclerView>(R.id.list_food)
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = FoodAdapter(recipeList) { id ->
+        adapter = FoodAdapter(recipeList, onClick = { id ->
             val modal = ModalFragment()
             val bundle = Bundle()
             bundle.putSerializable("recipe", recipeList.find { it.id == id })
             modal.arguments = bundle
             modal.show(parentFragmentManager, "ModalFragment")
-        }
+        }, onDelete = { position ->
+                recipeList.removeAt(position)
+                adapter.notifyItemRemoved(position)
+                adapter.notifyItemRangeChanged(position, recipeList.size)
+            }
+        )
 
         recycler.adapter = adapter
 
@@ -89,6 +96,7 @@ class ListFragment : Fragment() {
                 recycler.scrollToPosition(recipeList.size - 1)
             }
         }
+
         val viewAdd = view.findViewById<FloatingActionButton>(R.id.addFood)
         viewAdd.setOnClickListener {
             val  modal = AddFoodFragment()

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -74,6 +75,23 @@ class ModalFragment : DialogFragment() {
         }
         //
         val recipe = arguments?.getSerializable("recipe") as? Recipe ?: return
+        //Favorite modal
+        val btn_favorite = view.findViewById<ImageButton>(R.id.favoriteModal)
+        if(recipe.favorite){
+            btn_favorite.setImageResource(R.drawable.ic_bookmark_heart)
+        }else{
+            btn_favorite.setImageResource(R.drawable.ic_favorite)
+        }
+        btn_favorite.setOnClickListener {
+            recipe.favorite = !recipe.favorite
+            if (recipe.favorite) {
+                Toast.makeText(requireContext(), "Se agrego a favoritos", Toast.LENGTH_SHORT).show()
+                btn_favorite.setImageResource(R.drawable.ic_bookmark_heart)
+            } else {
+                Toast.makeText(requireContext(), "Se elimino de favoritos", Toast.LENGTH_SHORT).show()
+                btn_favorite.setImageResource(R.drawable.ic_favorite)
+            }
+        }
         //Img
         val image = view.findViewById<ImageView>(R.id.imgModal)
         Picasso.get()

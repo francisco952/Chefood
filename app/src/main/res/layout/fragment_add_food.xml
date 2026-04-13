@@ -155,18 +155,23 @@
                         android:padding="5dp"
                         tools:itemCount="0"
                         android:contentDescription="@string/ingredients"/>
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/addIngredient"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/addIngredient"
-                        app:icon="@drawable/ic_add_circle"
-                        app:iconGravity="textStart"
-                        app:iconPadding="8dp"
-                        android:textColor="@color/black"
-                        android:textStyle="italic"
-                        app:iconTint="@color/black"
-                        android:background="@drawable/bg_dashed"/>
+                        android:background="@drawable/bg_dashed">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/addIngredient"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addIngredient"
+                            app:icon="@drawable/ic_add_circle"
+                            app:iconGravity="textStart"
+                            app:iconPadding="8dp"
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            app:iconTint="@color/black"
+                            app:backgroundTint="@android:color/transparent"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,18 +196,23 @@
                         android:padding="5dp"
                         tools:itemCount="0"
                         android:contentDescription="@string/steps"/>
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/addStep"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/addTag"
-                        app:icon="@drawable/ic_playlist_add"
-                        app:iconGravity="textStart"
-                        app:iconPadding="8dp"
-                        android:textColor="@color/black"
-                        android:textStyle="italic"
-                        app:iconTint="@color/black"
-                        android:background="@drawable/bg_dashed"/>
+                        android:background="@drawable/bg_dashed">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/addStep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/addTag"
+                            app:icon="@drawable/ic_playlist_add"
+                            app:iconGravity="textStart"
+                            app:iconPadding="8dp"
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            app:iconTint="@color/black"
+                            app:backgroundTint="@android:color/transparent"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/newFood"

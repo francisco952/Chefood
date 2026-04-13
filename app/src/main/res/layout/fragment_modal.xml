@@ -50,7 +50,8 @@
                     android:src="@drawable/ic_favorite"
                     android:background="@drawable/ic_background_bt"
                     android:contentDescription="@string/bt_favorite"
-                    android:padding="8dp"/>
+                    android:padding="8dp"
+                    app:tint="@color/favorite"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
