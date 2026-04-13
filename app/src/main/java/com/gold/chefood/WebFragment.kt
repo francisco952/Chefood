@@ -1,59 +1,105 @@
 package com.gold.chefood
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class WebFragment : Fragment(R.layout.fragment_web) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [WebFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class WebFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var adapter: WebResultAdapter
+    private lateinit var emptyView: TextView
+    private lateinit var repository: RecipeRepository
+    private lateinit var searchEditText: TextInputEditText
+    private val resources = mutableListOf<WebFoodResource>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rvWebResults)
+        searchEditText = view.findViewById(R.id.etSearch)
+        emptyView = view.findViewById(R.id.tvWebEmpty)
+        repository = RecipeRepository(requireContext())
+
+        adapter = WebResultAdapter(mutableListOf()) { result ->
+            val intent = Intent(requireContext(), WebViewActivity::class.java).apply {
+                putExtra(WebViewActivity.EXTRA_URL, result.url)
+                putExtra(WebViewActivity.EXTRA_TITLE, result.title)
+            }
+            startActivity(intent)
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                applyFilter(s?.toString().orEmpty())
+            }
+
+            override fun afterTextChanged(s: Editable?) = Unit
+        })
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            resources.clear()
+            resources.addAll(repository.getWebResources())
+            applyFilter(searchEditText.text?.toString().orEmpty())
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_web, container, false)
+    private fun applyFilter(query: String) {
+        val cleaned = query.trim().lowercase()
+        val filtered = resources.filter { item ->
+            if (cleaned.isEmpty()) {
+                true
+            } else {
+                item.title.lowercase().contains(cleaned) ||
+                    item.description.lowercase().contains(cleaned) ||
+                    item.keywords.any { keyword -> keyword.lowercase().contains(cleaned) }
+            }
+        }
+
+        val uiItems = filtered.map { item ->
+            WebResultUi(
+                title = item.title,
+                description = item.description,
+                url = item.url,
+                browserLabel = getBrowserLabel(item.url)
+            )
+        }
+
+        adapter.submitData(uiItems)
+        emptyView.visibility = if (uiItems.isEmpty()) View.VISIBLE else View.GONE
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WebFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WebFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    @Suppress("DEPRECATION")
+    private fun getBrowserLabel(url: String): String {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val packageManager = requireContext().packageManager
+        val handlers = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
+
+        if (handlers.isEmpty()) {
+            return getString(R.string.available_browser_none)
+        }
+
+        val browserNames = handlers
+            .map { it.loadLabel(packageManager).toString() }
+            .distinct()
+            .take(3)
+            .joinToString(", ")
+
+        return getString(R.string.available_browser, browserNames)
     }
 }

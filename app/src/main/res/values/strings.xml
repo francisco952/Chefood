@@ -2,9 +2,26 @@
     <string name="app_name">CHEFOOD</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_person">Perfil</string>
-    <string name="menu_movie">Video</string>
+    <string name="menu_movie">Videos</string>
     <string name="menu_web">Navegador</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="nav_bars">nav_bars</string>
+    <string name="video_section_title">Recetas en video</string>
+    <string name="video_section_subtitle">Explora comidas en formato tarjeta estilo YouTube</string>
+    <string name="video_play">Reproducir</string>
+    <string name="video_favorite">Favorito</string>
+    <string name="video_unfavorite">Quitar favorito</string>
+    <string name="video_delete">Eliminar</string>
+    <string name="video_close">Cerrar</string>
+    <string name="search_hint">Buscar por plato, ingredientes o estilo</string>
+    <string name="search_section_title">Búsqueda web gastronómica</string>
+    <string name="search_section_subtitle">Resultados compatibles con tu navegador</string>
+    <string name="search_empty">No se encontraron resultados para esa búsqueda.</string>
+    <string name="available_browser">Disponible en: %1$s</string>
+    <string name="available_browser_none">Sin navegador disponible</string>
+    <string name="open_result">Abrir resultado</string>
+    <string name="web_loading">Cargando...</string>
+    <string name="back">Volver</string>
+    <string name="kcal_format">%1$d kcal</string>
 </resources>

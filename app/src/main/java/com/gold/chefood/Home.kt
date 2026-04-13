@@ -33,16 +33,24 @@ class Home : AppCompatActivity() {
             loadFragment(ListFragment())
         }
         navView.setNavigationItemSelectedListener { item: MenuItem ->
-            when(item.itemId){
-                R.id.nav_home -> loadFragment(ListFragment())
-                R.id.nav_person -> loadFragment(UserFragment())
-                R.id.nav_web -> loadFragment(WebFragment())
-                R.id.nav_movie -> loadFragment(VideoFragment())
-            }
+            createFragmentForMenu(item.itemId)?.let { loadFragment(it) }
             drawerLayout.closeDrawers()
             true
         }
     }
+
+    // Punto unico de integracion para el equipo: cada nuevo modulo
+    // solo necesita registrar su item de menu aqui.
+    private fun createFragmentForMenu(menuId: Int): Fragment? {
+        return when(menuId){
+            R.id.nav_home -> ListFragment()
+            R.id.nav_person -> UserFragment()
+            R.id.nav_web -> WebFragment()
+            R.id.nav_movie -> VideoFragment()
+            else -> null
+        }
+    }
+
     //fragment
     fun loadFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction()
