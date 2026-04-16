@@ -20,4 +20,13 @@
     <color name="bg_step">#C7DDD0</color>
     <color name="bg_tag">#E3EBDC</color>
     <color name="bg_select_tag">#E98B1C</color>
+    <color name="tag_veget">#4CAF50</color>
+    <color name="tag_healt">#E57373</color>
+    <color name="tag_carbo">#FFC107</color>
+    <color name="tag_organic">#2E7D32</color>
+    <color name="tag_gluten">#FF7043</color>
+    <color name="tag_sweet">#BA68C8</color>
+    <color name="tag_vegano">#388E3C</color>
+    <color name="tag_protein">#42A5F5</color>
+    <color name="btn_show">#6C63FF</color>
 </resources>

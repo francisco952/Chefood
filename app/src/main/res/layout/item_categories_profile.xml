@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@drawable/ct_background"
+    android:layout_margin="5dp">
+    <ImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_background_bt"
+        android:padding="8dp"
+        android:contentDescription="@string/ic_categorie"/>
+    <TextView
+        android:id="@+id/profileCategorie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+    <Switch
+        android:id="@+id/switchCategorie"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:thumbTint="@color/switch_thumb"
+        android:trackTint="@color/switch_track"/>
+</LinearLayout>

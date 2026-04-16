@@ -5,6 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.adapters.ProfileCategorieAdapter
+import com.gold.chefood.adapters.ProfileCategorieItem
+import com.google.android.material.button.MaterialButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +43,41 @@ class UserFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val btnShow = view.findViewById<ImageButton>(R.id.btnShowmore)
+        //List categories
+        val recycleCategories = view.findViewById<RecyclerView>(R.id.recycleInfoCateogire)
+        val listCategorie =  listOf(
+            ProfileCategorieItem(R.drawable.ic_eco, "Vegetariano", R.color.tag_veget),
+            ProfileCategorieItem(R.drawable.ic_avocado, "Saludable", R.color.tag_healt),
+            ProfileCategorieItem(R.drawable.ic_bakery, "Rico en carbohidratos", R.color.tag_carbo),
+            ProfileCategorieItem(R.drawable.ic_grass, "Orgánico", R.color.tag_organic),
+            ProfileCategorieItem(R.drawable.ic_no_food, "Sin gluten", R.color.tag_gluten),
+            ProfileCategorieItem(R.drawable.ic_cookie, "Sin azúcar", R.color.tag_sweet),
+            ProfileCategorieItem(R.drawable.ic_spa, "Vegano", R.color.tag_vegano),
+            ProfileCategorieItem(R.drawable.ic_fitness, "Rico en proteina", R.color.tag_protein)
+        )
+        val adapter = ProfileCategorieAdapter(listCategorie)
+        recycleCategories.layoutManager = LinearLayoutManager(requireContext())
+        recycleCategories.adapter = adapter
+        btnShow.setOnClickListener {
+            adapter.toggleShowAll()
+            val expanded = btnShow.contentDescription == getString(R.string.show_more)
+            if (expanded) {
+                btnShow.contentDescription = "Ver menos"
+                btnShow.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_visibility_off)
+                )
+            } else {
+                btnShow.contentDescription = "Ver más"
+                btnShow.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_visibility)
+                )
+            }
+        }
     }
 
     companion object {

@@ -34,6 +34,10 @@
     <string name="addTag">Agregar otro paso</string>
     <string name="createFood">Crear comida</string>
     <string name="ic_ingredient">Icono de ingrediente</string>
+    <string name="ic_categorie">Icono de categoria</string>
+    <string name="info_categorie">Información de categoria</string>
+    <string name="pref_diet">preferencia de dieta</string>
+    <string name="show_more">Ver más</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
