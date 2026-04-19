@@ -1,5 +1,7 @@
 package com.gold.chefood
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.adapters.DayAdapter
+import com.gold.chefood.adapters.getCurrentMonthDays
 import com.gold.chefood.modal.ModalPlanFragment
 import com.google.android.material.button.MaterialButton
 import com.squareup.picasso.Picasso
@@ -50,17 +59,45 @@ class CalendarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerCalend = view.findViewById<RecyclerView>(R.id.recyclerDates)
         val btnBreakfast = view.findViewById<MaterialButton>(R.id.addBreakfast)
         val btnLunch = view.findViewById<MaterialButton>(R.id.addLunch)
         val btnDinner = view.findViewById<MaterialButton>(R.id.addDinner)
         val btnSnack = view.findViewById<MaterialButton>(R.id.addSnack)
-        val bntSave = view.findViewById<MaterialButton>(R.id.savePlan)
+        val btnSave = view.findViewById<MaterialButton>(R.id.savePlan)
         val btnCancel = view.findViewById<MaterialButton>(R.id.cancelPlan)
 
         btnBreakfast.setOnClickListener { openModal("Breakfast") }
         btnLunch.setOnClickListener { openModal("Lunch") }
         btnDinner.setOnClickListener { openModal("Dinner") }
         btnSnack.setOnClickListener { openModal("Snack") }
+
+        btnSave.setOnClickListener {
+            Toast.makeText(requireContext(), "Plan guardado correctamente", Toast.LENGTH_SHORT).show()
+        }
+        btnCancel.setOnClickListener {
+            clearAllRecipes()
+            Toast.makeText(requireContext(),"Se cancelo el plan de dieta", Toast.LENGTH_SHORT).show()
+        }
+
+        val list = getCurrentMonthDays()
+        val manager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
+        recyclerCalend.layoutManager = manager
+        recyclerCalend.adapter = DayAdapter(list)
+
+        val todayPos = list.indexOfFirst { it.isToday }
+
+        recyclerCalend.post {
+            manager.scrollToPositionWithOffset(
+                todayPos,
+                recyclerCalend.width / 2 - 40
+            )
+        }
     }
     private fun openModal(type: String) {
         ModalPlanFragment.newInstance(type) { recipe ->
@@ -139,6 +176,58 @@ class CalendarFragment : Fragment() {
             ?.trim()
             ?.toIntOrNull() ?: 0
     }
+
+    private fun resetContainer( containerId: Int, buttonId: Int, textId: Int ){
+        val container = view?.findViewById<LinearLayout>(containerId)
+        container?.removeAllViews()
+        container?.setBackgroundResource(R.drawable.bg_dashed)
+
+        val button = MaterialButton(requireContext()).apply {
+            id = buttonId
+            text = getString(textId)
+            icon = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.ic_add_circle
+            )
+            iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
+            iconPadding = 16
+            iconTint = ColorStateList.valueOf(
+                ContextCompat.getColor(context, R.color.black)
+            )
+            setTextColor(
+                    ContextCompat.getColor(context, R.color.black)
+            )
+            backgroundTintList =
+                ColorStateList.valueOf(Color.TRANSPARENT)
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                80.dp()
+            )
+        }
+        button.setOnClickListener {
+            when(containerId){
+                R.id.contentBreakfast -> openModal("Breakfast")
+                R.id.contentLunch -> openModal("Lunch")
+                R.id.contentDinner -> openModal("Dinner")
+                R.id.contentSnack -> openModal("Snack")
+            }
+        }
+
+        container?.addView(button)
+    }
+    private fun clearAllRecipes(){
+        breakfastRecipe = null
+        lunchRecipe = null
+        dinnerRecipe = null
+        snackRecipe = null
+        resetContainer(R.id.contentBreakfast,R.id.addBreakfast,R.string.addPlan)
+        resetContainer(R.id.contentLunch,R.id.addLunch,R.string.addPlan)
+        resetContainer(R.id.contentDinner,R.id.addDinner,R.string.addPlan)
+        resetContainer(R.id.contentSnack,R.id.addSnack,R.string.addPlan)
+        updateTotals()
+    }
+    private fun Int.dp(): Int =
+        (this * resources.displayMetrics.density).toInt()
     companion object {
         /**
          * Use this factory method to create a new instance of

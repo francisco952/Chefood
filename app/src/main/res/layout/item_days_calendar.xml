@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="120dp"
+    android:layout_marginHorizontal="6dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="4dp">
+    <TextView
+        android:id="@+id/txtDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jue"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="#555555"
+        android:letterSpacing="0.1"/>
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="56dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:text="15"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:background="@drawable/bg_calendar"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"/>
+</LinearLayout>
