@@ -18,4 +18,8 @@
         <!-- Color del hint -->
         <item name="hintTextColor">#282828</item>
     </style>
+    <style name="RoundedImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
 </resources>

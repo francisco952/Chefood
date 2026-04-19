@@ -35,7 +35,7 @@ class Home : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { item: MenuItem ->
             when(item.itemId){
                 R.id.nav_home -> loadFragment(ListFragment())
-                R.id.nav_person -> loadFragment(UserFragment())
+                R.id.nav_person -> loadFragment(ContainerProfileFragment())
                 R.id.nav_web -> loadFragment(WebFragment())
                 R.id.nav_movie -> loadFragment(VideoFragment())
             }

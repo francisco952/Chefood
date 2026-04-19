@@ -13,6 +13,7 @@
     <color name="carbo">#962854</color>
     <color name="grass">#333A37</color>
     <color name="step">#459463</color>
+    <color name="plan">#B43E0B</color>
     <color name="bg_calories">#D9FAE2</color>
     <color name="bg_protein">#FAF3ED</color>
     <color name="bg_carbo">#FAE6EB</color>
@@ -28,5 +29,6 @@
     <color name="tag_sweet">#BA68C8</color>
     <color name="tag_vegano">#388E3C</color>
     <color name="tag_protein">#42A5F5</color>
+    <color name="resum_day">#F7E9E4</color>
     <color name="btn_show">#6C63FF</color>
 </resources>

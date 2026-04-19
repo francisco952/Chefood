@@ -11,9 +11,13 @@
     <string name="card_image">Imagen de receta</string>
     <string name="header">Summer Harvest SuperBowl</string>
     <string name="calories">Calorias</string>
+    <string name="total_calories">total calorías</string>
     <string name="carbo">Carbohidratos</string>
+    <string name="total_carbo">total carbohidratos</string>
     <string name="protein">Proteina</string>
+    <string name="total_protein">total proteina</string>
     <string name="grass">Grasa totales</string>
+    <string name="total_grass">total grasas</string>
     <string name="description">Pasta italiana con salsa pesto</string>
     <string name="bt_add">Agregar Receta</string>
     <string name="bt_delete">Eliminar</string>
@@ -37,7 +41,24 @@
     <string name="ic_categorie">Icono de categoria</string>
     <string name="info_categorie">Información de categoria</string>
     <string name="pref_diet">preferencia de dieta</string>
+    <string name="plan_diet">planeación de dieta</string>
+    <string name="breakfast">desayuno</string>
+    <string name="des_breakfast">Comienzo Saludable</string>
+    <string name="lunch">almuerzo</string>
+    <string name="des_lunch">Rico en Proteina</string>
+    <string name="dinner">comida</string>
+    <string name="des_dinner">Sin Gluten</string>
+    <string name="snack">merienda</string>
+    <string name="des_snack">Alto en Carbohidratos</string>
+    <string name="resumen">Resumen Diario</string>
+    <string name="savePlan">Guardar plan</string>
+    <string name="cancelPlan">Cancelar plan</string>
+    <string name="value">0</string>
     <string name="show_more">Ver más</string>
+    <string name="change">Cambiar</string>
+    <string name="addPlan">Agregar comida</string>
+    <string name="nav_calendar">Planeación</string>
+    <string name="nav_favorite">Favorito</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
