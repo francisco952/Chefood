@@ -5,17 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.adapters.FoodPlanAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FavoriteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+private lateinit var adapter: FoodPlanAdapter
 class FavoriteFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -34,7 +33,14 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false)
+        val view =  inflater.inflate(R.layout.fragment_favorite, container, false)
+        val recycler = view.findViewById<RecyclerView>(R.id.list_food_favorite)
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+        val allRecipes = getRecipes(requireContext())
+        val recipeList = allRecipes.filter { it.favorite }.toMutableList()
+        adapter =  FoodPlanAdapter(recipeList, false) { recipe -> }
+        recycler.adapter = adapter
+        return view
     }
 
     companion object {

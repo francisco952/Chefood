@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +49,7 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnShow = view.findViewById<ImageButton>(R.id.btnShowmore)
+        val btnSave = view.findViewById<MaterialButton>(R.id.savePreference)
         //List categories
         val recycleCategories = view.findViewById<RecyclerView>(R.id.recycleInfoCateogire)
         val listCategorie =  listOf(
@@ -77,6 +79,9 @@ class UserFragment : Fragment() {
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_visibility)
                 )
             }
+        }
+        btnSave.setOnClickListener {
+            Toast.makeText(requireContext(), "Preferencia guardada correctamente", Toast.LENGTH_SHORT).show()
         }
     }
 

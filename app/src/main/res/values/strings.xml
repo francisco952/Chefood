@@ -52,6 +52,8 @@
     <string name="des_snack">Alto en Carbohidratos</string>
     <string name="resumen">Resumen Diario</string>
     <string name="savePlan">Guardar plan</string>
+    <string name="savePreference">Guardar preferencias</string>
+    <string name="listFavorite">Listado de favoritas</string>
     <string name="cancelPlan">Cancelar plan</string>
     <string name="value">0</string>
     <string name="show_more">Ver más</string>
