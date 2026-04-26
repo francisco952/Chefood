@@ -12,6 +12,7 @@ data class Recipe(
     var favorite: Boolean,
     val type: List<String>,
     val image_url: String,
+    val video:  String,
     val description: String,
     val calories: String?,
     val carbohydrates: String,

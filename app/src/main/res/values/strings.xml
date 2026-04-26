@@ -61,6 +61,7 @@
     <string name="addPlan">Agregar comida</string>
     <string name="nav_calendar">Planeación</string>
     <string name="nav_favorite">Favorito</string>
+    <string name="conten_movie">Imagen de video</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

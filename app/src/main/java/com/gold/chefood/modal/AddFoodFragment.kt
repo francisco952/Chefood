@@ -162,6 +162,7 @@ class AddFoodFragment : DialogFragment() {
                     name = etTitle.text.toString(),
                     favorite = false,
                     image_url = "https://img.freepik.com/foto-gratis/vista-arriba-mesa-llena-comida_23-2149209253.jpg?semt=ais_hybrid&w=740&q=80",
+                    video = "",
                     description = etDescription.text.toString(),
                     calories = etCalorie.text.toString(),
                     carbohydrates = etCarbo.text.toString(),
