@@ -9,10 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp">
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/youtubePlayerView"
-            android:layout_width="match_parent"
-            android:layout_height="220dp" />
         <TextView
             android:id="@+id/modalTitleVideo"
             android:layout_width="match_parent"
