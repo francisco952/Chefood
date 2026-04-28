@@ -1,21 +1,22 @@
 package com.gold.chefood.modal
 
-import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.PlayerView
 import com.gold.chefood.R
 import com.gold.chefood.Recipe
 
 
 class ModalVideoFragment : DialogFragment() {
+    private lateinit var playerView: PlayerView
+    private lateinit var player: ExoPlayer
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,46 +24,31 @@ class ModalVideoFragment : DialogFragment() {
         val view = inflater.inflate(R.layout.fragment_modal_video, container, false)
         val title = view.findViewById<TextView>(R.id.modalTitleVideo)
         val description = view.findViewById<TextView>(R.id.modalDescriptionVideo)
-        val webView = view.findViewById<WebView>(R.id.webMovie)
-        val progress = view.findViewById<ProgressBar>(R.id.progressVideo)
+        playerView = view.findViewById(R.id.webMovie)
 
         val recipe = arguments?.getSerializable("recipe") as Recipe
 
         title.text = recipe.name
         description.text = recipe.description
 
-        progress.visibility = View.VISIBLE
-        webView.visibility = View.INVISIBLE
+        player = ExoPlayer.Builder(requireContext()).build()
+        playerView.player = player
 
-        webView.settings.javaScriptEnabled = true
-        webView.settings.domStorageEnabled = true
-        webView.settings.loadWithOverviewMode = true
-        webView.settings.useWideViewPort = true
-        webView.settings.mediaPlaybackRequiresUserGesture = false
+        val uri = Uri.parse("android.resource://${requireContext().packageName}/${R.raw.spageti_pesto}")
+        val mediaItem = MediaItem.fromUri(uri)
 
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                progress.visibility = View.VISIBLE
-                webView.visibility = View.INVISIBLE
-                super.onPageStarted(view, url, favicon)
-            }
-            override fun onPageFinished(view: WebView?, url: String?) {
-                progress.visibility = View.GONE
-                webView.visibility = View.VISIBLE
-                super.onPageFinished(view, url)
-            }
-            override fun shouldOverrideUrlLoading(
-                view: WebView,
-                request: WebResourceRequest
-            ): Boolean {
-                view.loadUrl(request.url.toString())
-                return true
-            }
-        }
-        webView.loadUrl(recipe.video)
+        player.setMediaItem(mediaItem)
+        player.prepare()
+        player.play()
 
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        player.release()
+    }
+
     override fun onStart() {
         super.onStart()
 
