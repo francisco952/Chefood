@@ -9,6 +9,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp">
+        <WebView
+            android:id="@+id/webMovie"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"/>
         <TextView
             android:id="@+id/modalTitleVideo"
             android:layout_width="match_parent"
@@ -23,5 +27,10 @@
             android:textSize="18sp"
             android:padding="10dp"/>
     </LinearLayout>
-
+    <ProgressBar
+        android:id="@+id/progressVideo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 </FrameLayout>

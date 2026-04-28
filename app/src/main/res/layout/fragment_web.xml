@@ -4,11 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WebFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="web" />
+        android:orientation="vertical"
+        android:padding="8dp">
+        <SearchView
+            android:id="@+id/searchWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Buscar receta..."
+            android:background="@drawable/ct_background"
+            android:iconifiedByDefault="false"
+            android:padding="8dp"
+            android:layout_margin="5dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleWeb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"/>
+    </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/progressCardWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 </FrameLayout>

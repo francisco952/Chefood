@@ -44,14 +44,11 @@ class VideoFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(requireContext())
 
         recipeList.addAll(getRecipes(requireContext()))
-        adapter = VideoAdapter(recipeList){ id ->
+        adapter = VideoAdapter(recipeList){ recipe ->
             val modal = ModalVideoFragment()
-            val bundle = Bundle()
-            bundle.putSerializable(
-                "recipe",
-                recipeList.find { it.id == id }
-            )
-            modal.arguments = bundle
+            modal.arguments = Bundle().apply {
+                putSerializable("recipe", recipe)
+            }
             modal.show(parentFragmentManager, "ModalVideoFragment")
         }
         recycler.adapter = adapter

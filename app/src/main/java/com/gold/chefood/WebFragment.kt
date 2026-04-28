@@ -5,6 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.gold.chefood.WebApi.RetrofitClient
+import com.gold.chefood.adapters.NewsAdapter
+import com.gold.chefood.models.NewsResponse
+import com.gold.chefood.models.SearchRequest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +31,11 @@ class WebFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var recycler: RecyclerView
+    private lateinit var searchView: SearchView
+    private lateinit var progressBar: ProgressBar
+    private val apiKey = "dffd159163776a073984f225e14485cfaad7facb"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +49,70 @@ class WebFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_web, container, false)
+        val view = inflater.inflate(R.layout.fragment_web, container, false)
+        progressBar = view.findViewById<ProgressBar>(R.id.progressCardWeb)
+        recycler = view.findViewById(R.id.recycleWeb)
+        searchView = view.findViewById(R.id.searchWeb)
+
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        searchView.setOnQueryTextListener( object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrBlank()){
+                    showLoading()
+                    searchNotice(query.trim())
+                }
+                searchView.clearFocus()
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+        searchNotice("recetas de comida")
+        showLoading()
+        return view
     }
 
+    private fun searchNotice(text:String){
+        val request = SearchRequest(text)
+        RetrofitClient.instance.searchNews(apiKey, request)
+            .enqueue(object : Callback<NewsResponse>{
+                override fun onResponse( call: Call<NewsResponse>, response: Response<NewsResponse> ){
+                    println("CODEAPI: ${response.code()}")
+                    if(response.isSuccessful && response.body() != null){
+                        val list = response.body()!!.images
+                        recycler.adapter = NewsAdapter(list){item ->
+                            val fragment = BrowserFragment()
+                            fragment.arguments = Bundle().apply {
+                                putString("url",item.link)
+                            }
+                            parentFragmentManager.beginTransaction()
+                                .replace(R.id.drawer_layout, fragment)
+                                .addToBackStack(null)
+                                .commit()
+                        }
+                        hideLoading()
+                    }else{
+                        hideLoading()
+                        println(response.errorBody()?.string())
+                    }
+                }
+                override fun onFailure( call: Call<NewsResponse>, t: Throwable ){
+                    hideLoading()
+                    t.printStackTrace()
+                }
+            })
+    }
+    private fun showLoading() {
+        progressBar.visibility = View.VISIBLE
+        recycler.visibility = View.GONE
+    }
+    private fun hideLoading() {
+        progressBar.visibility = View.GONE
+        recycler.visibility = View.VISIBLE
+    }
     companion object {
         /**
          * Use this factory method to create a new instance of

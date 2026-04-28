@@ -5,13 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.gold.chefood.R
 import com.gold.chefood.Recipe
 import com.squareup.picasso.Picasso
 
-class VideoAdapter(private val recipes: List<Recipe>, val onClick: (Int) -> Unit): RecyclerView.Adapter<VideoAdapter.ViewHolder>(){
+class VideoAdapter(private val recipes: List<Recipe>, val onClick: (Recipe) -> Unit): RecyclerView.Adapter<VideoAdapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val image = view.findViewById<ImageView>(R.id.imgVideo)
         val title = view.findViewById<TextView>(R.id.txtVideoTitle)
@@ -31,7 +30,7 @@ class VideoAdapter(private val recipes: List<Recipe>, val onClick: (Int) -> Unit
         holder.description.text = recipe.description
 
         holder.btn_Video.setOnClickListener {
-            onClick(recipe.id)
+            onClick(recipe)
         }
 
         Picasso.get()
